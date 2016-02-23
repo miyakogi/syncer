@@ -8,6 +8,9 @@ syncer
 .. image:: https://img.shields.io/travis/miyakogi/syncer.svg
         :target: https://travis-ci.org/miyakogi/syncer
 
+.. image:: https://codecov.io/github/miyakogi/syncer/coverage.svg?branch=master
+    :target: https://codecov.io/github/miyakogi/syncer?branch=master
+
 .. image:: https://readthedocs.org/projects/syncer/badge/?version=latest
         :target: https://readthedocs.org/projects/syncer/?badge=latest
         :alt: Documentation Status
