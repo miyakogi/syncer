@@ -11,15 +11,11 @@ syncer
 .. image:: https://codecov.io/github/miyakogi/syncer/coverage.svg?branch=master
     :target: https://codecov.io/github/miyakogi/syncer?branch=master
 
-.. image:: https://readthedocs.org/projects/syncer/badge/?version=latest
-        :target: https://readthedocs.org/projects/syncer/?badge=latest
-        :alt: Documentation Status
-
 
 Async to sync converter
 
 * Free software: MIT license
-* Documentation: https://syncer.readthedocs.org.
+* Documentation: https://miyakogi.github.io/syncer/
 
 Features
 --------
