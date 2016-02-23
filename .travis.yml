@@ -1,0 +1,14 @@
+# Config file for automatic testing at travis-ci.org
+# This file will be regenerated if you run travis_pypi_setup.py
+
+language: python
+python:
+  - "3.5"
+
+install:
+  - pip install pytest pytest-cov
+  - pip install codecov
+script:
+  - py.test --cov wdom
+after_success:
+  - codecov
