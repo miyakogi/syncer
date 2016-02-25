@@ -4,6 +4,9 @@ Syncer
 .. image:: https://img.shields.io/pypi/v/syncer.svg
         :target: https://pypi.python.org/pypi/syncer
 
+.. image:: https://img.shields.io/pypi/pyversions/syncer.svg
+        :target: https://pypi.python.org/pypi/syncer
+
 .. image:: https://img.shields.io/travis/miyakogi/syncer.svg
         :target: https://travis-ci.org/miyakogi/syncer
 
