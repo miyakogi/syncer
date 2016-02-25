@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>syncer &mdash; syncer 0.1.0 documentation</title>
+    <title>Syncer &mdash; Syncer 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -23,12 +23,32 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="syncer 0.1.0 documentation" href="index.html" />
-    <link rel="next" title="Installation" href="installation.html" />
-    <link rel="prev" title="Welcome to syncer’s documentation!" href="index.html" />
+    <link rel="top" title="Syncer 0.1.0 documentation" href="index.html" />
+  
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  <!-- Web Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+
+  <!-- Style -->
+  <style>
+    h1.logo a {
+      text-decoration: none;
+      border-bottom: none;
+    }
+    div.sphinxsidebarwrapper li {
+      font-size: 16px;
+      line-height: 1.5;
+      list-style-type: none;
+    }
+    div.sphinxsidebar li>a {
+      text-decoration: none;
+      border-bottom: solid 1px #dddddd;
+    }
+  </style>
 
   </head>
   <body role="document">  
@@ -39,25 +59,79 @@
           <div class="body" role="main">
             
   <div class="section" id="syncer">
-<h1>syncer<a class="headerlink" href="#syncer" title="Permalink to this headline">¶</a></h1>
+<h1>Syncer<a class="headerlink" href="#syncer" title="Permalink to this headline">¶</a></h1>
 <a class="reference external image-reference" href="https://pypi.python.org/pypi/syncer"><img src="https://img.shields.io/pypi/v/syncer.svg" /></a>
 <a class="reference external image-reference" href="https://travis-ci.org/miyakogi/syncer"><img src="https://img.shields.io/travis/miyakogi/syncer.svg" /></a>
-<a class="reference external image-reference" href="https://readthedocs.org/projects/syncer/?badge=latest"><img alt="Documentation Status" src="https://readthedocs.org/projects/syncer/badge/?version=latest" /></a>
-<p>Async to sync converter</p>
+<a class="reference external image-reference" href="https://codecov.io/github/miyakogi/syncer?branch=master"><img alt="https://codecov.io/github/miyakogi/syncer/coverage.svg?branch=master" src="https://codecov.io/github/miyakogi/syncer/coverage.svg?branch=master" /></a>
+<p>Syncer is an async-to-sync converter for python &gt;= 3.5.</p>
 <ul class="simple">
-<li>Free software: ISC license</li>
-<li>Documentation: <a class="reference external" href="https://syncer.readthedocs.org">https://syncer.readthedocs.org</a>.</li>
+<li>Documentation: <a class="reference external" href="https://miyakogi.github.io/syncer/">https://miyakogi.github.io/syncer/</a></li>
 </ul>
+</div>
 <div class="section" id="features">
-<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<h1>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h1>
+<p>Sometimes (mainly in test) we need to convert asynchronous functions to normal,
+synchronous functions and run it synchronously. It can be done by
+<code class="docutils literal"><span class="pre">ayncio.get_event_loop().run_until_complete()</span></code>, but it&#8217;s quite long...</p>
+<p>Syncer makes this conversion easy.</p>
 <ul class="simple">
-<li>TODO</li>
+<li>Convert coroutine-function (defined by <code class="docutils literal"><span class="pre">aync</span> <span class="pre">def</span></code>) to normal (synchronous) function</li>
+<li>Run coroutines synchronously</li>
+<li>Support both <code class="docutils literal"><span class="pre">async</span> <span class="pre">def</span></code> and decorator (<code class="docutils literal"><span class="pre">&#64;asyncio.coroutine</span></code>) style</li>
 </ul>
+</div>
+<div class="section" id="install">
+<h1>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h1>
+<p>At the command line:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ pip install syncer
+</pre></div>
+</div>
+<p>Or, if you have virtualenvwrapper installed:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ mkvirtualenv syncer
+$ pip install syncer
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h1>
+<p>This module has only one function: <code class="docutils literal"><span class="pre">syncer.sync</span></code>.</p>
+<div class="highlight-py"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">syncer</span> <span class="kn">import</span> <span class="n">sync</span>
+<span class="n">async</span> <span class="k">def</span> <span class="nf">async_fun</span><span class="p">():</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">sync</span><span class="p">(</span><span class="n">async_fun</span><span class="p">)</span>  <span class="c1"># now b is synchronous</span>
+<span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">b</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>To test the above <code class="docutils literal"><span class="pre">async_fun</span></code> in asynchronous test functions:</p>
+<div class="highlight-py"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">unittest</span>
+
+<span class="k">class</span> <span class="nc">TestA</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="c1"># ``sync`` can be used as decorator.</span>
+    <span class="c1"># The decorated function becomes synchronous.</span>
+    <span class="nd">@sync</span>
+    <span class="n">async</span> <span class="k">def</span> <span class="nf">test_async_fun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">await</span> <span class="n">async_fun</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or, keep test synchronous, get result synchronously:</p>
+<div class="highlight-py"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TestA</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_async_fun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># run coroutine and return the result</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">sync</span><span class="p">(</span><span class="n">async_fun</span><span class="p">()),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># This is equivalent to below, just a shortcut</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span>
+            <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">async_fun</span><span class="p">()),</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="license">
+<h1>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/miyakogi/syncer/LICENSE">MIT license</a></p>
 </div>
 <div class="section" id="credits">
-<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a></h2>
+<h1>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a></h1>
 <p>This package was created with <a class="reference external" href="https://github.com/audreyr/cookiecutter">Cookiecutter</a> and the <a class="reference external" href="https://github.com/audreyr/cookiecutter-pypackage">audreyr/cookiecutter-pypackage</a> project template.</p>
-</div>
 </div>
 
 
@@ -66,43 +140,33 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Syncer</a></h1>
+
+
+
+<p class="blurb">async to sync converter</p>
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=miyakogi&repo=syncer&type=watch&count=true&size=large"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">syncer</a><ul>
+<li><a class="reference internal" href="#">Syncer</a></li>
 <li><a class="reference internal" href="#features">Features</a></li>
+<li><a class="reference internal" href="#install">Install</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
 <li><a class="reference internal" href="#credits">Credits</a></li>
 </ul>
-</li>
-</ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Welcome to syncer&#8217;s documentation!</a></li>
-      <li>Next: <a href="installation.html" title="next chapter">Installation</a></li>
-  </ul></li>
-</ul>
-</div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/readme.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+
         </div>
       </div>
       <div class="clearer"></div>
