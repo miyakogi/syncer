@@ -1,0 +1,24 @@
+{% extends 'alabaster/layout.html' %}
+{% block extrahead %}
+  {{ super() }}
+  <!-- Web Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+
+  <!-- Style -->
+  <style>
+    h1.logo a {
+      text-decoration: none;
+      border-bottom: none;
+    }
+    div.sphinxsidebarwrapper li {
+      font-size: 16px;
+      line-height: 1.5;
+      list-style-type: none;
+    }
+    div.sphinxsidebar li>a {
+      text-decoration: none;
+      border-bottom: solid 1px #dddddd;
+    }
+  </style>
+{% endblock %}

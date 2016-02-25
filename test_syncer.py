@@ -5,7 +5,7 @@
 test_syncer
 ----------------------------------
 
-Tests for `syncer.sync` function
+Tests for ``syncer.sync``
 """
 
 import asyncio

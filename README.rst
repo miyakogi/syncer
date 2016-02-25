@@ -1,5 +1,4 @@
-===============================
-syncer
+Syncer
 ===============================
 
 .. image:: https://img.shields.io/pypi/v/syncer.svg
@@ -12,18 +11,82 @@ syncer
     :target: https://codecov.io/github/miyakogi/syncer?branch=master
 
 
-Async to sync converter
+Syncer is an async-to-sync converter for python >= 3.5.
 
-* Free software: MIT license
 * Documentation: https://miyakogi.github.io/syncer/
 
 Features
---------
+========
 
-* TODO
+Sometimes (mainly in test) we need to convert asynchronous functions to normal,
+synchronous functions and run it synchronously. It can be done by
+``ayncio.get_event_loop().run_until_complete()``, but it's quite long...
+
+Syncer makes this conversion easy.
+
+* Convert coroutine-function (defined by ``aync def``) to normal (synchronous) function
+* Run coroutines synchronously
+* Support both ``async def`` and decorator (``@asyncio.coroutine``) style
+
+Install
+=======
+
+At the command line::
+
+    $ pip install syncer
+
+Or, if you have virtualenvwrapper installed::
+
+    $ mkvirtualenv syncer
+    $ pip install syncer
+
+Usage
+=====
+
+This module has only one function: ``syncer.sync``.
+
+.. code-block:: py
+
+    from syncer import sync
+    async def async_fun():
+        ...
+        return 1
+    b = sync(async_fun)  # now b is synchronous
+    assert 1 == b()
+
+To test the above ``async_fun`` in asynchronous test functions:
+
+.. code-block:: py
+
+    import unittest
+
+    class TestA(unittest.TestCase):
+        # ``sync`` can be used as decorator.
+        # The decorated function becomes synchronous.
+        @sync
+        async def test_async_fun(self):
+            self.assertEqual(await async_fun(), 1)
+
+Or, keep test synchronous, get result synchronously:
+
+.. code-block:: py
+
+    class TestA(unittest.TestCase):
+        def test_async_fun(self):
+            # run coroutine and return the result
+            self.assertEqual(sync(async_fun()), 1)
+            # This is equivalent to below, just a shortcut
+            self.assertEqual(
+                asyncio.get_event_loop().run_until_complete(async_fun()), 1)
+
+
+License
+=======
+
+`MIT license <https://github.com/miyakogi/syncer/LICENSE>`_
 
 Credits
----------
+=======
 
 This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 

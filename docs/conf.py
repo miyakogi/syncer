@@ -55,7 +55,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'syncer'
+project = 'Syncer'
 copyright = '2016, Hiroyuki Takagi'
 
 # The version info for the project you're documenting, acts as replacement
@@ -116,7 +116,23 @@ html_theme = 'alabaster'
 # Theme options are theme-specific and customize the look and feel of a
 # theme further.  For a list of options available for each theme, see the
 # documentation.
-#html_theme_options = {}
+font_family = ', '.join(['"goudy old style"', '"minion pro"', '"bell mt"',
+                         'Georgia', '"Hiragino Mincho Pro"', 'serif',
+                         ])
+head_font_family = ', '.join(['Garamond', 'Georgia', 'serif'])
+code_font_family = ', '.join(['Consolas','Menlo', '"Deja Vu Sans Mono"',
+                              '"Bitstream Vera Sans Mono"', 'monospace',
+                              ])
+html_theme_options = {
+    'description': 'async to sync converter',
+    'github_user': 'miyakogi',
+    'github_repo': 'syncer',
+    'font_family': ', '.join(['"PT Serif"', font_family]),
+    'head_font_family': ', '.join(['"PT Serif"',
+                                   head_font_family,
+                                   ]),
+    'code_font_family': ', '.join(['"PT Mono"', code_font_family]),
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []
@@ -153,7 +169,13 @@ html_static_path = ['_static']
 #html_use_smartypants = True
 
 # Custom sidebar templates, maps document names to template names.
-#html_sidebars = {}
+html_sidebars = {
+    '**': [
+        'about.html',
+        'localtoc.html',
+    ]
+}
+
 
 # Additional templates that should be rendered to pages, maps page names
 # to template names.
@@ -209,7 +231,7 @@ latex_elements = {
 # [howto/manual]).
 latex_documents = [
     ('index', 'syncer.tex',
-     'syncer Documentation',
+     'Syncer Documentation',
      'Hiroyuki Takagi', 'manual'),
 ]
 
@@ -239,8 +261,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'syncer',
-     'syncer Documentation',
+    ('index', 'Syncer',
+     'Syncer Documentation',
      ['Hiroyuki Takagi'], 1)
 ]
 
@@ -254,10 +276,10 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', 'syncer',
-     'syncer Documentation',
+    ('index', 'Syncer',
+     'Syncer Documentation',
      'Hiroyuki Takagi',
-     'syncer',
+     'Syncer',
      'One line description of project.',
      'Miscellaneous'),
 ]
