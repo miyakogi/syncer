@@ -16,6 +16,7 @@ Syncer
 
 Syncer is an async-to-sync converter for python >= 3.5.
 
+* PyPI: https://pypi.python.org/pypi/syncer/
 * Documentation: https://miyakogi.github.io/syncer/
 * Source code: https://github.com/miyakogi/syncer/
 
