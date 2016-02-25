@@ -14,6 +14,7 @@ Syncer
 Syncer is an async-to-sync converter for python >= 3.5.
 
 * Documentation: https://miyakogi.github.io/syncer/
+* Source code: https://github.com/miyakogi/syncer/
 
 Features
 ========
@@ -83,7 +84,7 @@ Or, keep test synchronous, get result synchronously:
 License
 =======
 
-`MIT license <https://github.com/miyakogi/syncer/LICENSE>`_
+`MIT license <https://github.com/miyakogi/syncer/blob/master/LICENSE>`_
 
 Credits
 =======
