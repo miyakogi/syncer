@@ -12,7 +12,7 @@ with open('README.rst') as readme_file:
 
 setup(
     name='syncer',
-    version='0.1.0',
+    version='1.0.0',
     description="Async to sync converter",
     long_description=readme,
     author="Hiroyuki Takagi",
