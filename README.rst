@@ -1,5 +1,5 @@
 Syncer
-===============================
+======
 
 .. image:: https://img.shields.io/pypi/v/syncer.svg
         :target: https://pypi.python.org/pypi/syncer
@@ -14,7 +14,7 @@ Syncer
     :target: https://codecov.io/github/miyakogi/syncer?branch=master
 
 
-Syncer is an async-to-sync converter for python >= 3.5.
+Syncer is an async-to-sync converter for python.
 
 * PyPI: https://pypi.python.org/pypi/syncer/
 * Documentation: https://miyakogi.github.io/syncer/
@@ -24,7 +24,7 @@ Features
 ========
 
 Sometimes (mainly in test) we need to convert asynchronous functions to normal,
-synchronous functions and run it synchronously. It can be done by
+synchronous functions and run them synchronously. It can be done by
 ``ayncio.get_event_loop().run_until_complete()``, but it's quite long...
 
 Syncer makes this conversion easy.
@@ -38,11 +38,6 @@ Install
 
 At the command line::
 
-    $ pip install syncer
-
-Or, if you have virtualenvwrapper installed::
-
-    $ mkvirtualenv syncer
     $ pip install syncer
 
 Usage
@@ -72,7 +67,7 @@ To test the above ``async_fun`` in asynchronous test functions:
         async def test_async_fun(self):
             self.assertEqual(await async_fun(), 1)
 
-Or, keep test synchronous, get result synchronously:
+Or, keep test functions synchronous and get results synchronously:
 
 .. code-block:: py
 
