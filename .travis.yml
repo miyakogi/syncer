@@ -2,6 +2,9 @@
 # This file will be regenerated if you run travis_pypi_setup.py
 
 language: python
+python:
+  - "3.5"
+
 install:
   - pip install tox
   - pip install codecov
