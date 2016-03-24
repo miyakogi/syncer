@@ -48,6 +48,14 @@ async def test_deco_testmethod():
     b = await a()
     assert b == 1
 
+@pytest.mark.xfail(strict=True, raises=AssertionError)
+@sync
+async def test_failure():
+    '''This test must fail.
+    Without the @sync decorator, this test passes unexpectedly.
+    '''
+    assert False
+
 def test_wrap_method():
     class A:
         async def a(self):
@@ -113,10 +121,6 @@ def test_func_error():
         return 1
     with pytest.raises(TypeError):
         sync(a)
-
-def test_func_val_error():
-    def a():
-        return 1
     with pytest.raises(TypeError):
         sync(a())
 
@@ -125,10 +129,6 @@ def test_gen_error():
         yield 1
     with pytest.raises(TypeError):
         sync(a)
-
-def test_genobj_error():
-    def a():
-        yield 1
     with pytest.raises(TypeError):
         sync(a())
 
