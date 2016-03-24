@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Syncer’s Document &mdash; Syncer 1.0.0 documentation</title>
+    <title>Syncer’s Document &mdash; Syncer 1.0.1 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.0.0',
+        VERSION:     '1.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Syncer 1.0.0 documentation" href="#" />
+    <link rel="top" title="Syncer 1.0.1 documentation" href="#" />
   
    
   
@@ -88,14 +88,14 @@ synchronous functions and run them synchronously. It can be done by
 <div class="section" id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <p>At the command line:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ pip install syncer
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ pip install syncer
 </pre></div>
 </div>
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <p>This module has only one function: <code class="docutils literal"><span class="pre">syncer.sync</span></code>.</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">syncer</span> <span class="kn">import</span> <span class="n">sync</span>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">syncer</span> <span class="kn">import</span> <span class="n">sync</span>
 <span class="n">async</span> <span class="k">def</span> <span class="nf">async_fun</span><span class="p">():</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="mi">1</span>
@@ -104,7 +104,7 @@ synchronous functions and run them synchronously. It can be done by
 </pre></div>
 </div>
 <p>To test the above <code class="docutils literal"><span class="pre">async_fun</span></code> in asynchronous test functions:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">unittest</span>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
 
 <span class="k">class</span> <span class="nc">TestA</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="c1"># ``sync`` can be used as decorator.</span>
@@ -115,7 +115,7 @@ synchronous functions and run them synchronously. It can be done by
 </pre></div>
 </div>
 <p>Or, keep test functions synchronous and get results synchronously:</p>
-<div class="highlight-py"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TestA</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestA</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">test_async_fun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># run coroutine and return the result</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">sync</span><span class="p">(</span><span class="n">async_fun</span><span class="p">()),</span> <span class="mi">1</span><span class="p">)</span>
@@ -124,6 +124,7 @@ synchronous functions and run them synchronously. It can be done by
             <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">async_fun</span><span class="p">()),</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>More examples/use-cases will be found in <a class="reference external" href="https://github.com/miyakogi/syncer/blob/master/test_syncer.py">test</a>.</p>
 </div>
 <div class="section" id="license">
 <h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
