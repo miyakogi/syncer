@@ -79,6 +79,7 @@ Or, keep test functions synchronous and get results synchronously:
             self.assertEqual(
                 asyncio.get_event_loop().run_until_complete(async_fun()), 1)
 
+More examples/use-cases will be found in `test <https://github.com/miyakogi/syncer/blob/master/test_syncer.py>`_.
 
 License
 =======

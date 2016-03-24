@@ -1,21 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from os import path
+
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
-
-with open('README.rst') as readme_file:
+readme_file = path.join(path.dirname(path.abspath(__file__)), 'README.rst')
+with open(readme_file) as readme_file:
     readme = readme_file.read()
 
 setup(
     name='syncer',
     version='1.0.0',
-    description="Async to sync converter",
+    description='Async to sync converter',
     long_description=readme,
-    author="Hiroyuki Takagi",
+    author='Hiroyuki Takagi',
     author_email='miyako.dev@gmail.com',
     url='https://github.com/miyakogi/syncer',
     py_modules=['syncer'],
