@@ -6,9 +6,8 @@ python:
   - "3.5"
 
 install:
-  - pip install pytest pytest-cov
   - pip install codecov
 script:
-  - py.test --cov syncer
+  - tox
 after_success:
   - codecov
