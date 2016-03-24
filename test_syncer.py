@@ -11,6 +11,8 @@ Tests for ``syncer.sync``
 import asyncio
 import unittest
 
+import pytest
+
 from syncer import sync
 
 
@@ -51,6 +53,19 @@ class TestSyncer(unittest.TestCase):
             return 1
         b = await a()
         self.assertEqual(b, 1)
+
+    @pytest.mark.xfail(strict=True, raises=AssertionError)
+    @sync
+    async def test_deco_fail(self):
+        assert True
+
+    @pytest.mark.xfail(strict=True)
+    def test_failure(self):
+        assert True
+
+    @unittest.expectedFailure
+    def test_failure_ut(self):
+        assert True
 
     def test_wrap_method(self):
         class A:
