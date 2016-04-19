@@ -133,3 +133,7 @@ class TestSyncer(unittest.TestCase):
             sync(a)
         with self.assertRaises(TypeError):
             sync(a())
+
+
+if __name__ == '__main__':
+    unittest.main()
