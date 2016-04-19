@@ -9,130 +9,127 @@ Tests and examples
 """
 
 import asyncio
+import unittest
 
-import pytest
+from xfail import xfail
 
 from syncer import sync
 
 
-def test_wrap_async():
-    async def a():
-        return 1
-    b = sync(a)
-    assert b() == 1
-
-def test_wrap_async_args():
-    async def a(b, c, d=2):
-        return d
-    b = sync(a)
-    assert b(1, 2) == 2
-    assert b(1, 2, 3) == 3
-
-def test_deco_async():
-    @sync
-    async def a():
-        return 1
-    assert a() == 1
-
-def test_deco_async_args():
-    @sync
-    async def a(b, c, d=2):
-        return d
-    assert a(1, 2) == 2
-    assert a(1, 2, 3) == 3
-
-@sync
-async def test_deco_testmethod():
-    async def a():
-        return 1
-    b = await a()
-    assert b == 1
-
-@pytest.mark.xfail(strict=True, raises=AssertionError)
-@sync
-async def test_failure():
-    '''This test must fail.
-    Without the @sync decorator, this test passes unexpectedly.
-    '''
-    assert False
-
-def test_wrap_method():
-    class A:
-        async def a(self):
+class TestSyncer(unittest.TestCase):
+    def test_wrap_async(self):
+        async def a():
             return 1
-    a = A()
-    sync_a = sync(a.a)
-    assert sync_a() == 1
+        b = sync(a)
+        self.assertEqual(b(), 1)
 
-def test_wrap_method_args():
-    class A:
-        async def a(self, b, c, d=2):
+    def test_wrap_async_args(self):
+        async def a(b, c, d=2):
             return d
-    a = A()
-    sync_a = sync(a.a)
-    assert sync_a(1, 2) == 2
-    assert sync_a(1, 2, 3) == 3
+        b = sync(a)
+        self.assertEqual(b(1, 2), 2)
+        self.assertEqual(b(1, 2, 3), 3)
 
-def test_deco_method():
-    class A:
+    def test_deco_async(self):
         @sync
-        async def a(self):
+        async def a():
             return 1
-    a = A()
-    assert a.a() == 1
+        self.assertEqual(a(), 1)
 
-def test_deco_method_args():
-    class A:
+    def test_deco_async_args(self):
         @sync
-        async def a(self, b, c, d=2):
+        async def a(b, c, d=2):
             return d
-    a = A()
-    assert a.a(1, 2) == 2
-    assert a.a(1, 2, 3) == 3
+        self.assertEqual(a(1, 2), 2)
+        self.assertEqual(a(1, 2, 3), 3)
 
-def test_wrap_aioco():
-    @asyncio.coroutine
-    def a():
-        return 1
-    b = sync(a)
-    assert b() == 1
-
-def test_deco_aioco():
     @sync
-    @asyncio.coroutine
-    def a():
-        return 1
-    assert a() == 1
+    async def test_deco_testmethod(self):
+        async def a():
+            return 1
+        b = await a()
+        self.assertEqual(b, 1)
 
-def test_coro():
-    async def a():
-        return 1
-    assert sync(a()) == 1
+    @xfail(AssertionError, strict=True)
+    @sync
+    async def test_failure(self):
+        '''This test must fail.
+        Without the @sync decorator, this test passes unexpectedly.
+        '''
+        assert False
 
-def test_coro_aioco():
-    @asyncio.coroutine
-    def a():
-        yield from asyncio.sleep(0.0)
-        return 1
-    assert sync(a()) == 1
+    def test_wrap_method(self):
+        class A:
+            async def a(self):
+                return 1
+        a = A()
+        sync_a = sync(a.a)
+        self.assertEqual(sync_a(), 1)
 
-def test_func_error():
-    def a():
-        return 1
-    with pytest.raises(TypeError):
-        sync(a)
-    with pytest.raises(TypeError):
-        sync(a())
+    def test_wrap_method_args(self):
+        class A:
+            async def a(self, b, c, d=2):
+                return d
+        a = A()
+        sync_a = sync(a.a)
+        self.assertEqual(sync_a(1, 2), 2)
+        self.assertEqual(sync_a(1, 2, 3), 3)
 
-def test_gen_error():
-    def a():
-        yield 1
-    with pytest.raises(TypeError):
-        sync(a)
-    with pytest.raises(TypeError):
-        sync(a())
+    def test_deco_method(self):
+        class A:
+            @sync
+            async def a(self):
+                return 1
+        a = A()
+        self.assertEqual(a.a(), 1)
 
+    def test_deco_method_args(self):
+        class A:
+            @sync
+            async def a(self, b, c, d=2):
+                return d
+        a = A()
+        self.assertEqual(a.a(1, 2), 2)
+        self.assertEqual(a.a(1, 2, 3), 3)
 
-if __name__ == '__main__':
-    import sys
-    sys.exit(pytest.main())
+    def test_wrap_aioco(self):
+        @asyncio.coroutine
+        def a():
+            return 1
+        b = sync(a)
+        self.assertEqual(b(), 1)
+
+    def test_deco_aioco(self):
+        @sync
+        @asyncio.coroutine
+        def a():
+            return 1
+        self.assertEqual(a(), 1)
+
+    def test_coro(self):
+        async def a():
+            return 1
+        self.assertEqual(sync(a()), 1)
+
+    def test_coro_aioco(self):
+        @asyncio.coroutine
+        def a():
+            yield from asyncio.sleep(0.0)
+            return 1
+        self.assertEqual(sync(a()), 1)
+
+    def test_func_error(self):
+        def a():
+            return 1
+        with self.assertRaises(TypeError):
+            sync(a)
+        with self.assertRaises(TypeError):
+            sync(a())
+
+    def test_gen_error(self):
+        def a():
+            yield 1
+        with self.assertRaises(TypeError):
+            sync(a)
+        with self.assertRaises(TypeError):
+            sync(a())
