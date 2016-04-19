@@ -14,7 +14,7 @@ with open(readme_file) as readme_file:
 
 setup(
     name='syncer',
-    version='1.0.1',
+    version='1.0.2',
     description='Async to sync converter',
     long_description=readme,
     author='Hiroyuki Takagi',
