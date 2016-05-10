@@ -16,12 +16,13 @@ from xfail import xfail
 from syncer import sync
 
 
-class TestSyncer(unittest.TestCase):
+class TestSyncerPY35(unittest.TestCase):
     def test_wrap_async(self):
         async def a():
             return 1
         b = sync(a)
         self.assertEqual(b(), 1)
+        self.assertEqual(sync(a()), 1)
 
     def test_wrap_async_args(self):
         async def a(b, c, d=2):
@@ -91,48 +92,6 @@ class TestSyncer(unittest.TestCase):
         a = A()
         self.assertEqual(a.a(1, 2), 2)
         self.assertEqual(a.a(1, 2, 3), 3)
-
-    def test_wrap_aioco(self):
-        @asyncio.coroutine
-        def a():
-            return 1
-        b = sync(a)
-        self.assertEqual(b(), 1)
-
-    def test_deco_aioco(self):
-        @sync
-        @asyncio.coroutine
-        def a():
-            return 1
-        self.assertEqual(a(), 1)
-
-    def test_coro(self):
-        async def a():
-            return 1
-        self.assertEqual(sync(a()), 1)
-
-    def test_coro_aioco(self):
-        @asyncio.coroutine
-        def a():
-            yield from asyncio.sleep(0.0)
-            return 1
-        self.assertEqual(sync(a()), 1)
-
-    def test_func_error(self):
-        def a():
-            return 1
-        with self.assertRaises(TypeError):
-            sync(a)
-        with self.assertRaises(TypeError):
-            sync(a())
-
-    def test_gen_error(self):
-        def a():
-            yield 1
-        with self.assertRaises(TypeError):
-            sync(a)
-        with self.assertRaises(TypeError):
-            sync(a())
 
 
 if __name__ == '__main__':
