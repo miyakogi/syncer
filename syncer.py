@@ -10,6 +10,7 @@ import types
 
 PY35 = sys.version_info >= (3, 5)
 
+
 def _is_awaitable(co):
     if PY35:
         return inspect.isawaitable(co)
@@ -34,6 +35,7 @@ def sync_co(co):
 def sync_fu(f):
     if not asyncio.iscoroutinefunction(f):
         raise TypeError('Called with unsupported argument: {}'.format(f))
+
     @functools.wraps(f)
     def run(*args, **kwargs):
         return asyncio.get_event_loop().run_until_complete(f(*args, **kwargs))
