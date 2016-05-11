@@ -7,7 +7,7 @@ python:
 
 install:
   - pip install tox
-  - pip install coverage codecov
+  - pip install coverage codecov xfail
 script:
   - tox
   - coverage erase && coverage run run_tests.py
