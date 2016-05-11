@@ -8,9 +8,9 @@ python:
 
 install:
   - pip install xfail
-  - if [ $TRAVIS_PYTHON_VERSION == 3.5* ]; then pip install coverage codecov; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == 3.5* ]]; then pip install coverage codecov; fi
 script:
-  - if [ $TRAVIS_PYTHON_VERSION == 3.4* ]; then python run_test.py; fi
-  - if [ $TRAVIS_PYTHON_VERSION == 3.5* ]; then coverage erase && coverage run run_test.py; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == 3.4* ]]; then python run_test.py; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == 3.5* ]]; then coverage erase && coverage run run_test.py; fi
 after_success:
-  - if [ $TRAVIS_PYTHON_VERSION == 3.5* ]; then codecov; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == 3.5* ]]; then codecov; fi
