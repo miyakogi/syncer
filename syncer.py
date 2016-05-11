@@ -15,7 +15,8 @@ def _is_awaitable(co):
     if PY35:
         return inspect.isawaitable(co)
     else:
-        return isinstance(co, types.GeneratorType)
+        return (isinstance(co, types.GeneratorType) or
+                isinstance(co, asyncio.Future))
 
 
 @functools.singledispatch
@@ -23,6 +24,7 @@ def sync(co):
     raise TypeError('Called with unsupported argument: {}'.format(co))
 
 
+@sync.register(asyncio.Future)
 @sync.register(types.GeneratorType)
 def sync_co(co):
     if not _is_awaitable(co):

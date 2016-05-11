@@ -93,6 +93,11 @@ class TestSyncerPY35(unittest.TestCase):
         self.assertEqual(a.a(1, 2), 2)
         self.assertEqual(a.a(1, 2, 3), 3)
 
+    def test_future(self):
+        f = asyncio.Future()
+        f.set_result(1)
+        self.assertEqual(sync(f), 1)
+
 
 if __name__ == '__main__':
     unittest.main()
