@@ -2,12 +2,15 @@
 # This file will be regenerated if you run travis_pypi_setup.py
 
 language: python
-python: "3.5"
+python:
+  - "3.4.4"
+  - "3.5.1"
 
 install:
-  - pip install tox
-  - pip install codecov
+  - pip install xfail
+  - if [ $TRAVIS_PYTHON_VERSION == 3.5* ]; then pip install coverage codecov; fi
 script:
-  - tox
+  - if [ $TRAVIS_PYTHON_VERSION == 3.4* ]; then python run_test.py; fi
+  - if [ $TRAVIS_PYTHON_VERSION == 3.5* ]; then coverage erase && coverage run run_test.py; fi
 after_success:
-  - codecov
+  - if [ $TRAVIS_PYTHON_VERSION == 3.5* ]; then codecov; fi
