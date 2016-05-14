@@ -20,7 +20,7 @@ setup(
     author='Hiroyuki Takagi',
     author_email='miyako.dev@gmail.com',
     url='https://github.com/miyakogi/syncer',
-    py_modules=['syncer'],
+    packages=['syncer', 'syncer/test_py34', 'syncer/test_py35'],
     include_package_data=True,
     license="MIT",
     zip_safe=False,
