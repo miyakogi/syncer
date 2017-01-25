@@ -3,14 +3,14 @@
 
 language: python
 python:
-  - "3.5.1"
+  - "3.4"
+  - "3.5"
+  - "3.6"
 
 install:
-  - pip install tox
+  - pip install tox-travis
   - pip install coverage codecov xfail
 script:
   - tox
-  - coverage erase
-  - PYTHONPATH=${TRAVIS_BUILD_DIR} python -m coverage run --source syncer -m unittest discover syncer
 after_success:
-  - codecov
+  - if [[ $TRAVIS_PYTHON_VERSION == 3.6 ]]; then coverage erase && PYTHONPATH=${TRAVIS_BUILD_DIR} python -m coverage run --source syncer -m unittest discover syncer && codecov; fi
