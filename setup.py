@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import sys
 from os import path
 
 try:
@@ -11,6 +12,8 @@ except ImportError:
 readme_file = path.join(path.dirname(path.abspath(__file__)), 'README.rst')
 with open(readme_file) as readme_file:
     readme = readme_file.read()
+
+install_requires = ['typing'] if sys.version_info < (3, 6) else []
 
 setup(
     name='syncer',
@@ -37,4 +40,5 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     test_suite='test_syncer',
+    install_requires=install_requires,
 )
