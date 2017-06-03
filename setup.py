@@ -17,7 +17,7 @@ install_requires = ['typing'] if sys.version_info < (3, 6) else []
 
 setup(
     name='syncer',
-    version='1.2.1',
+    version='1.2.2',
     description='Async to sync converter',
     long_description=readme,
     author='Hiroyuki Takagi',
