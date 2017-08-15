@@ -4,16 +4,14 @@
 import sys
 from os import path
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+from setuptools import setup
 
 readme_file = path.join(path.dirname(path.abspath(__file__)), 'README.rst')
 with open(readme_file) as readme_file:
     readme = readme_file.read()
 
 install_requires = ['typing'] if sys.version_info < (3, 6) else []
+test_requirements = ['xfail']
 
 setup(
     name='syncer',
@@ -39,6 +37,8 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
-    test_suite='test_syncer',
     install_requires=install_requires,
+    test_suite='tests',
+    tests_require=test_requirements,
+
 )
