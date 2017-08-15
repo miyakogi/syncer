@@ -13,4 +13,4 @@ install:
 script:
   - tox
 after_success:
-  - if [[ $TRAVIS_PYTHON_VERSION == 3.6 ]]; then coverage erase && PYTHONPATH=${TRAVIS_BUILD_DIR} python -m coverage run --source syncer -m unittest discover syncer && codecov; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == 3.6 ]]; then cd ${TRAVIS_BUILD_DIR} && coverage erase && coverage run --source syncer -m unittest discover && codecov; fi
