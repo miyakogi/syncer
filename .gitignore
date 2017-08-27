@@ -15,14 +15,19 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
 parts/
 sdist/
 var/
 *.egg-info/
 .installed.cfg
 *.egg
+
+# Virtualenv
+bin/
+lib/
+lib64/
+lib64
+pyvenv.cfg
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -57,3 +62,7 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# zsh-autoenv
+.autoenv.zsh
+.autoenv_leave.zsh
