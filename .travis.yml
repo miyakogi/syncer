@@ -2,15 +2,20 @@
 # This file will be regenerated if you run travis_pypi_setup.py
 
 language: python
-python:
-  - "3.4"
-  - "3.5"
-  - "3.6"
+
+matrix:
+  include:
+    - python: 3.4
+      env: TOXENV=unittest,green,pytest,nose
+    - python: 3.5
+      env: TOXENV=unittest,green,pytest,nose
+    - python: 3.6
+      env: TOXENV=unittest,green,pytest,nose,coverage,flake8,mypy,codecov
+    - python: pypy3
+      env: TOXENV=unittest,green,pytest,nose
 
 install:
-  - pip install tox-travis
-  - pip install coverage codecov xfail
+  - pip install tox
+
 script:
   - tox
-after_success:
-  - if [[ $TRAVIS_PYTHON_VERSION == 3.6* ]]; then cd ${TRAVIS_BUILD_DIR} && coverage erase && coverage run --source syncer -m unittest discover && coverage report && codecov; fi

@@ -1,0 +1,8 @@
+-r requirements-docs.txt
+-r requirements-test.txt
+
+flake8
+mypy
+
+green
+livereload
