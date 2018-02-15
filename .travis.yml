@@ -6,13 +6,13 @@ language: python
 matrix:
   include:
     - python: 3.4
-      env: TOXENV=py
+      env: TOXENV=py34
     - python: 3.5
-      env: TOXENV=py
+      env: TOXENV=py35
     - python: 3.6
-      env: TOXENV=py,coverage,flake8,mypy,codecov
+      env: TOXENV=py36,coverage,flake8,mypy,codecov
     - python: pypy3
-      env: TOXENV=py
+      env: TOXENV=pypy3
 
 install:
   - pip install tox
