@@ -19,6 +19,13 @@ def _is_awaitable(co: Generator[Any, None, Any]) -> bool:
         return (isinstance(co, types.GeneratorType) or
                 isinstance(co, asyncio.Future))
 
+def _get_event_loop() -> asyncio.AbstractEventLoop:
+    try:
+        return asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        return loop
 
 @singledispatch
 def sync(co: Any):
@@ -30,7 +37,7 @@ def sync(co: Any):
 def sync_co(co: Generator[Any, None, Any]) -> Any:
     if not _is_awaitable(co):
         raise TypeError('Called with unsupported argument: {}'.format(co))
-    return asyncio.get_event_loop().run_until_complete(co)
+    return _get_event_loop().run_until_complete(co)
 
 
 @sync.register(types.FunctionType)
@@ -41,7 +48,7 @@ def sync_fu(f: Callable[..., Any]) -> Callable[..., Any]:
 
     @wraps(f)
     def run(*args, **kwargs):
-        return asyncio.get_event_loop().run_until_complete(f(*args, **kwargs))
+        return _get_event_loop().run_until_complete(f(*args, **kwargs))
     return run
 
 
