@@ -14,7 +14,7 @@ test_requirements = ['xfail']
 
 setup(
     name='syncer',
-    version='2.0.0',
+    version='2.0.1',
     description='Async to sync converter',
     long_description=readme,
     author='Hiroyuki Takagi',
