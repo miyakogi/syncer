@@ -7,12 +7,6 @@ Syncer
 .. image:: https://img.shields.io/pypi/pyversions/syncer.svg
         :target: https://pypi.python.org/pypi/syncer
 
-.. image:: https://img.shields.io/travis/miyakogi/syncer.svg
-        :target: https://travis-ci.org/miyakogi/syncer
-
-.. image:: https://codecov.io/github/miyakogi/syncer/coverage.svg?branch=master
-    :target: https://codecov.io/github/miyakogi/syncer?branch=master
-
 
 Syncer is an async-to-sync converter for python.
 
