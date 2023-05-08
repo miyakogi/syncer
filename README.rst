@@ -29,9 +29,8 @@ synchronous functions and run them synchronously. It can be done by
 
 Syncer makes this conversion easy.
 
-* Convert coroutine-function (defined by ``aync def``) to normal (synchronous) function
-* Run coroutines synchronously
-* Support both ``async def`` and decorator (``@asyncio.coroutine``) style
+* Convert async-function (defined by ``aync def``) to normal (synchronous) function
+* Evaluate coroutines synchronously
 
 Install
 =======

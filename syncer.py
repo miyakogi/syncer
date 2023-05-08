@@ -1,23 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import sys
 from functools import singledispatch, wraps
 import asyncio
 import inspect
 import types
 from typing import Any, Callable, Generator
-
-
-PY35 = sys.version_info >= (3, 5)
-
-
-def _is_awaitable(co: Generator[Any, None, Any]) -> bool:
-    if PY35:
-        return inspect.isawaitable(co)
-    else:
-        return (isinstance(co, types.GeneratorType) or
-                isinstance(co, asyncio.Future))
 
 
 @singledispatch
@@ -28,7 +16,7 @@ def sync(co: Any):
 @sync.register(asyncio.Future)
 @sync.register(types.GeneratorType)
 def sync_co(co: Generator[Any, None, Any]) -> Any:
-    if not _is_awaitable(co):
+    if not inspect.isawaitable(co):
         raise TypeError('Called with unsupported argument: {}'.format(co))
     return asyncio.get_event_loop().run_until_complete(co)
 
@@ -45,5 +33,4 @@ def sync_fu(f: Callable[..., Any]) -> Callable[..., Any]:
     return run
 
 
-if PY35:
-    sync.register(types.CoroutineType)(sync_co)
+sync.register(types.CoroutineType)(sync_co)
