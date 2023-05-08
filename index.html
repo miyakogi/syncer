@@ -1,31 +1,22 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Syncer’s Document &mdash; Syncer 1.0.2 documentation</title>
-    
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '1.0.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Syncer 1.0.2 documentation" href="#" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Syncer’s Document &#8212; Syncer 2.0.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
   
    
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -50,72 +41,71 @@
     }
   </style>
 
-  </head>
-  <body role="document">  
+  </head><body>
+  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
-  <div class="section" id="syncer-s-document">
-<h1>Syncer&#8217;s Document<a class="headerlink" href="#syncer-s-document" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="syncer">
-<h2>Syncer<a class="headerlink" href="#syncer" title="Permalink to this headline">¶</a></h2>
-<a class="reference external image-reference" href="https://pypi.python.org/pypi/syncer"><img src="https://img.shields.io/pypi/v/syncer.svg" /></a>
-<a class="reference external image-reference" href="https://pypi.python.org/pypi/syncer"><img src="https://img.shields.io/pypi/pyversions/syncer.svg" /></a>
-<a class="reference external image-reference" href="https://travis-ci.org/miyakogi/syncer"><img src="https://img.shields.io/travis/miyakogi/syncer.svg" /></a>
-<a class="reference external image-reference" href="https://codecov.io/github/miyakogi/syncer?branch=master"><img alt="https://codecov.io/github/miyakogi/syncer/coverage.svg?branch=master" src="https://codecov.io/github/miyakogi/syncer/coverage.svg?branch=master" /></a>
+  <section id="syncer-s-document">
+<h1>Syncer’s Document<a class="headerlink" href="#syncer-s-document" title="Permalink to this heading">¶</a></h1>
+<section id="syncer">
+<h2>Syncer<a class="headerlink" href="#syncer" title="Permalink to this heading">¶</a></h2>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/syncer"><img alt="https://img.shields.io/pypi/v/syncer.svg" src="https://img.shields.io/pypi/v/syncer.svg" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/syncer"><img alt="https://img.shields.io/pypi/pyversions/syncer.svg" src="https://img.shields.io/pypi/pyversions/syncer.svg" /></a>
 <p>Syncer is an async-to-sync converter for python.</p>
 <ul class="simple">
-<li>PyPI: <a class="reference external" href="https://pypi.python.org/pypi/syncer/">https://pypi.python.org/pypi/syncer/</a></li>
-<li>Documentation: <a class="reference external" href="https://miyakogi.github.io/syncer/">https://miyakogi.github.io/syncer/</a></li>
-<li>Source code: <a class="reference external" href="https://github.com/miyakogi/syncer/">https://github.com/miyakogi/syncer/</a></li>
+<li><p>PyPI: <a class="reference external" href="https://pypi.python.org/pypi/syncer/">https://pypi.python.org/pypi/syncer/</a></p></li>
+<li><p>Documentation: <a class="reference external" href="https://miyakogi.github.io/syncer/">https://miyakogi.github.io/syncer/</a></p></li>
+<li><p>Source code: <a class="reference external" href="https://github.com/miyakogi/syncer/">https://github.com/miyakogi/syncer/</a></p></li>
 </ul>
-</div>
-<div class="section" id="features">
-<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this heading">¶</a></h2>
 <p>Sometimes (mainly in test) we need to convert asynchronous functions to normal,
 synchronous functions and run them synchronously. It can be done by
-<code class="docutils literal"><span class="pre">ayncio.get_event_loop().run_until_complete()</span></code>, but it&#8217;s quite long...</p>
+<code class="docutils literal notranslate"><span class="pre">ayncio.get_event_loop().run_until_complete()</span></code>, but it’s quite long…</p>
 <p>Syncer makes this conversion easy.</p>
 <ul class="simple">
-<li>Convert coroutine-function (defined by <code class="docutils literal"><span class="pre">aync</span> <span class="pre">def</span></code>) to normal (synchronous) function</li>
-<li>Run coroutines synchronously</li>
-<li>Support both <code class="docutils literal"><span class="pre">async</span> <span class="pre">def</span></code> and decorator (<code class="docutils literal"><span class="pre">&#64;asyncio.coroutine</span></code>) style</li>
+<li><p>Convert async-function (defined by <code class="docutils literal notranslate"><span class="pre">aync</span> <span class="pre">def</span></code>) to normal (synchronous) function</p></li>
+<li><p>Evaluate coroutines synchronously</p></li>
 </ul>
-</div>
-<div class="section" id="install">
-<h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="install">
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this heading">¶</a></h2>
 <p>At the command line:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span>$ pip install syncer
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install syncer
 </pre></div>
 </div>
-</div>
-<div class="section" id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>This module has only one function: <code class="docutils literal"><span class="pre">syncer.sync</span></code>.</p>
-<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">syncer</span> <span class="kn">import</span> <span class="n">sync</span>
-<span class="n">async</span> <span class="k">def</span> <span class="nf">async_fun</span><span class="p">():</span>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<p>This module has only one function: <code class="docutils literal notranslate"><span class="pre">syncer.sync</span></code>.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">syncer</span> <span class="kn">import</span> <span class="n">sync</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">async_fun</span><span class="p">():</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="mi">1</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">sync</span><span class="p">(</span><span class="n">async_fun</span><span class="p">)</span>  <span class="c1"># now b is synchronous</span>
 <span class="k">assert</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">b</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>To test the above <code class="docutils literal"><span class="pre">async_fun</span></code> in asynchronous test functions:</p>
-<div class="highlight-py"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+<p>To test the above <code class="docutils literal notranslate"><span class="pre">async_fun</span></code> in asynchronous test functions:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
 
 <span class="k">class</span> <span class="nc">TestA</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="c1"># ``sync`` can be used as decorator.</span>
     <span class="c1"># The decorated function becomes synchronous.</span>
     <span class="nd">@sync</span>
-    <span class="n">async</span> <span class="k">def</span> <span class="nf">test_async_fun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">await</span> <span class="n">async_fun</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">test_async_fun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="k">await</span> <span class="n">async_fun</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Or, keep test functions synchronous and get results synchronously:</p>
-<div class="highlight-py"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestA</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestA</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">test_async_fun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># run coroutine and return the result</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">sync</span><span class="p">(</span><span class="n">async_fun</span><span class="p">()),</span> <span class="mi">1</span><span class="p">)</span>
@@ -125,19 +115,20 @@ synchronous functions and run them synchronously. It can be done by
 </pre></div>
 </div>
 <p>More examples/use-cases will be found in <a class="reference external" href="https://github.com/miyakogi/syncer/blob/master/test_syncer.py">test</a>.</p>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
 <p><a class="reference external" href="https://github.com/miyakogi/syncer/blob/master/LICENSE">MIT license</a></p>
-</div>
-<div class="section" id="credits">
-<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="credits">
+<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this heading">¶</a></h2>
 <p>This package was created with <a class="reference external" href="https://github.com/audreyr/cookiecutter">Cookiecutter</a> and the <a class="reference external" href="https://github.com/audreyr/cookiecutter-pypackage">audreyr/cookiecutter-pypackage</a> project template.</p>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -150,8 +141,9 @@ synchronous functions and run them synchronously. It can be done by
 
 
 
+
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=miyakogi&repo=syncer&type=watch&count=true&size=large"
+<iframe src="https://ghbtns.com/github-btn.html?user=miyakogi&repo=syncer&type=watch&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
 
@@ -159,9 +151,11 @@ synchronous functions and run them synchronously. It can be done by
 
 
 
-  <h3><a href="#">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Syncer&#8217;s Document</a><ul>
+
+  <div>
+    <h3><a href="#">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Syncer’s Document</a><ul>
 <li><a class="reference internal" href="#syncer">Syncer</a></li>
 <li><a class="reference internal" href="#features">Features</a></li>
 <li><a class="reference internal" href="#install">Install</a></li>
@@ -172,6 +166,7 @@ synchronous functions and run them synchronously. It can be done by
 </li>
 </ul>
 
+  </div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -180,11 +175,11 @@ synchronous functions and run them synchronously. It can be done by
       &copy;2016, Hiroyuki Takagi.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |
-      <a href="_sources/index.txt"
+      <a href="_sources/index.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
