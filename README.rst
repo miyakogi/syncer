@@ -8,7 +8,7 @@ Syncer
         :target: https://pypi.python.org/pypi/syncer
 
 
-Syncer is an async-to-sync converter for python.
+Syncer is a source-to-source compiler that translate async code, to sync code.
 
 * PyPI: https://pypi.python.org/pypi/syncer/
 * Documentation: https://miyakogi.github.io/syncer/
@@ -19,7 +19,7 @@ Features
 
 Sometimes (mainly in test) we need to convert asynchronous functions to normal,
 synchronous functions and run them synchronously. It can be done by
-``ayncio.get_event_loop().run_until_complete()``, but it's quite long...
+``ayncio.get_event_loop().run_until_complete()``, but it's much slower...
 
 Syncer makes this conversion easy.
 
@@ -36,7 +36,7 @@ At the command line::
 Usage
 =====
 
-This module has only one function: ``syncer.sync``.
+This module export one public function: ``syncer.sync``.
 
 .. code-block:: py
 
